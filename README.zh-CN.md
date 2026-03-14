@@ -1,82 +1,105 @@
 # AI Diagram Hub
 
-一个 AI 驱动的图表创作平台，用自然语言描述你想要的图表，AI 帮你生成。
+<div align="center">
 
-基于 Cloudflare Pages 构建，前端 React + 后端 Pages Functions 一体化部署。
+**一个 AI 驱动的图表创作平台**
 
-## 核心亮点
+[🇺🇸 English](README.md) | [🇨🇳 中文](#readme)
 
-### 三大绘图引擎
+![许可证](https://img.shields.io/badge/license-MIT-blue.svg)
+![Cloudflare](https://img.shields.io/badge/Cloudflare-Pages-orange.svg)
+![React](https://img.shields.io/badge/React-19-61dafb.svg)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6.svg)
 
-支持三种各具特色的绘图引擎，满足不同场景需求：
+</div>
 
-- **Mermaid** - 流程图、时序图、类图等，代码驱动，精确可控
-- **Excalidraw** - 手绘风格图表，简洁美观，适合头脑风暴
-- **Draw.io** - 专业图表编辑器，功能丰富，适合复杂图表
+---
 
-### 简约好用的项目管理
+## 🎯 项目简介
 
-- 轻松管理所有图表项目
-- 完整的版本历史，随时回退到任意版本
-- **所有数据存储在本地**，无需担心隐私问题
+**AI Diagram Hub** 是一个 AI 驱动的图表创作平台。用自然语言描述你想要的图表，AI 自动为你生成。
 
-### 卓越的绘图体验
+基于 Cloudflare Pages 构建，采用 React 前端和 Pages Functions 后端。
 
-- **秒级响应** - 几乎所有绘图都能达到秒级响应，告别漫长等待
-- **样式精美** - 特别优化了 Mermaid 的渲染样式，美观度大幅提升
-- **智能编辑** - 基于现有图表进行后续编辑，AI 理解上下文
-- **空间感知** - 更优秀的布局能力，箭头贯穿元素的情况大幅减少
+## ✨ 核心特性
 
-### 多模态输入
+### 🖥️ 三种绘图引擎
 
-不止于文字描述，还支持：
+三种不同的绘图引擎，满足不同场景需求：
 
-- **文档可视化** - 上传文档，自动生成可视化图表
-- **图片复刻** - 上传图片，AI 识别并复刻图表
-- **链接解析** - 输入链接，自动解析内容并生成图表
+| 引擎 | 特点 | 适用场景 |
+|------|------|----------|
+| **Mermaid** | 代码驱动，精确控制 | 流程图、时序图、类图 |
+| **Excalidraw** | 手绘风格，清新美观 | 头脑风暴、草图绘制 |
+| **Draw.io** | 专业编辑器，功能丰富 | 复杂图表、专业文档 |
 
-## 快速开始
+### 📁 直观的项目管理
+
+- ✅ 轻松管理所有图表项目
+- ✅ 完整的版本历史，可恢复到任意历史版本
+- ✅ **数据完全本地存储**，无隐私担忧
+
+### 🎨 卓越的绘图体验
+
+- **⚡ 秒级响应** - 几乎所有图表秒级渲染，无需等待
+- **🎭 美观样式** - 特别优化的 Mermaid 渲染，美观度显著提升
+- **🧠 智能编辑** - 支持基于现有图表继续编辑，AI 理解上下文
+- **📐 空间感知** - 更优的布局能力，减少元素间箭头交叉
+
+### 🔄 多模态输入
+
+除了文本描述，还支持：
+
+| 输入方式 | 说明 |
+|----------|------|
+| **📄 文档可视化** | 上传文档，自动生成可视化图表 |
+| **🖼️ 图片重绘** | 上传图片，AI 识别并重绘图表 |
+| **🔗 链接解析** | 输入网址，自动解析内容生成图表 |
+
+## 🚀 快速开始
 
 ### 方式一：首页快速生成
 
 1. 打开首页
 2. 选择绘图引擎（Mermaid / Excalidraw / Draw.io）
 3. 输入图表描述，例如："画一个用户登录流程图"
-4. 点击生成，AI 自动创建项目并生成图表
+4. 点击生成 - AI 将自动创建项目并绘制图表
 
 ### 方式二：项目管理
 
-1. 进入项目列表页
+1. 进入项目页面
 2. 点击"新建项目"
-3. 选择引擎并命名
-4. 在编辑器中通过对话描述你的需求
+3. 选择引擎并为项目命名
+4. 在编辑器中使用聊天面板描述需求
 
-## 使用技巧
+## 💡 使用技巧
 
-### AI 对话生成
+### AI 聊天生成
 
-在编辑器右侧的对话面板中，你可以：
+在编辑器右侧聊天面板中，你可以：
 
-- 描述新图表："画一个电商下单流程图"
-- 修改现有图表："把支付节点改成红色"
-- 添加元素："增加一个库存检查的步骤"
+```
+• 描述新图表："画一个电商结账流程图"
+• 修改现有图表："将支付节点改为红色"
+• 添加元素："添加一个库存检查步骤"
+```
 
 ### 手动编辑
 
-- **Excalidraw** - 直接在画布上拖拽、绘制
-- **Draw.io** - 使用专业的图表编辑工具
-- **Mermaid** - 可直接编辑代码
+- **Excalidraw** - 直接在画布上拖拽绘制
+- **Draw.io** - 使用专业图表编辑工具
+- **Mermaid** - 直接编辑代码
 
 ### 版本管理
 
-- 点击工具栏的"历史记录"按钮
-- 查看所有历史版本
-- 点击任意版本预览
-- 点击"恢复"回退到该版本
+1. 点击工具栏的"历史"按钮
+2. 查看所有历史版本
+3. 点击任意版本预览
+4. 点击"恢复"回退到该版本
 
-## 本地开发
+## 🛠️ 本地开发
 
-### 1. 克隆项目并安装依赖
+### 1. 克隆并安装依赖
 
 ```bash
 git clone https://github.com/liujuntao123/smart-ai-draw
@@ -86,7 +109,7 @@ pnpm install
 
 ### 2. 配置环境变量
 
-在根目录下创建 `.dev.vars` 文件：
+在根目录创建 `.dev.vars` 文件：
 
 ```env
 AI_API_KEY=your-api-key
@@ -95,23 +118,23 @@ AI_PROVIDER=openai
 AI_MODEL_ID=gpt-4o-mini
 ```
 
-> 支持 OpenAI、Anthropic 及其他兼容 OpenAI 格式的服务
+> 💡 支持 OpenAI、Anthropic 及其他 OpenAI 兼容服务
 
 ### 3. 启动开发服务器
 
 ```bash
-# 同时启动前端和后端
+# 同时启动前端 + 后端
 pnpm run dev
 # 访问 http://localhost:8787
 
-# 或者分别启动：
+# 或分别启动：
 pnpm run dev:frontend   # 仅 Vite (http://localhost:5173)
 pnpm run dev:backend    # 仅 Wrangler Pages (http://localhost:8787)
 ```
 
-**注意**：开发时访问 `http://localhost:8787`（wrangler 代理 vite）。
+**注意**: 开发时访问 `http://localhost:8787`（wrangler 代理 vite）
 
-## Cloudflare Pages 部署
+## 📦 Cloudflare Pages 部署
 
 ### 1. 构建
 
@@ -128,7 +151,7 @@ wrangler pages secret put AI_PROVIDER
 wrangler pages secret put AI_MODEL_ID
 ```
 
-或在 Cloudflare Pages 控制台中配置环境变量。
+或在 Cloudflare Pages 仪表板中配置环境变量。
 
 ### 3. 部署
 
@@ -144,13 +167,21 @@ pnpm run pages:deploy
 | Anthropic | anthropic | https://api.anthropic.com/v1 | claude-sonnet-4-5 |
 | 其他兼容服务 | openai | 自定义 URL | - |
 
-## 技术栈
+## 🧰 技术栈
 
-- 前端：React 19 + Vite + TypeScript + Tailwind CSS
-- 状态管理：Zustand
-- 本地存储：Dexie.js (IndexedDB)
-- 后端：Cloudflare Pages Functions
+| 层次 | 技术 |
+|------|------|
+| 前端 | React 19 + Vite + TypeScript + Tailwind CSS |
+| 状态管理 | Zustand |
+| 数据存储 | Dexie.js (IndexedDB) |
+| 后端 | Cloudflare Pages Functions |
 
-## 开源协议
+## 📄 许可证
 
 MIT
+
+---
+
+<div align="center">
+  <strong>🌟 用 AI 轻松创作图表！</strong>
+</div>
