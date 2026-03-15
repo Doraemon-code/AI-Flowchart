@@ -29,21 +29,6 @@ export function AboutPage() {
               </p>
             </section>
 
-            {/* 联系作者 */}
-            <section className="rounded-xl border border-border bg-surface p-6 shadow-sm">
-              <h2 className="mb-4 text-lg font-medium text-primary">联系作者</h2>
-              <p className="mb-4 text-sm leading-relaxed text-muted">
-                如果你有任何的建议和想法，欢迎联系作者。
-              </p>
-              <div className="flex justify-center">
-                <img
-                  src="/contact.png"
-                  alt="联系作者"
-                  className="max-w-xs rounded-lg border border-border"
-                />
-              </div>
-            </section>
-
             {/* 赞助支持 */}
             <section className="rounded-xl border border-border bg-surface p-6 shadow-sm">
               <h2 className="mb-4 text-lg font-medium text-primary">赞助支持</h2>
