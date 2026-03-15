@@ -73,6 +73,11 @@ Cloudflare Pages Functions (`functions/api/`):
 
 **AI Message Format**: OpenAI-compatible with multimodal support (text + images)
 
+**Excalidraw Font Configuration**:
+- `window.EXCALIDRAW_ASSET_PATH = '/'` is set in `src/main.tsx` to load fonts locally
+- Font files are stored in `public/fonts/Excalifont/` and served by Vite
+- Default font is Excalifont (handwriting style, `fontFamily: 5`)
+
 ## Environment Setup
 
 Create `.dev.vars` file in root directory for local development:

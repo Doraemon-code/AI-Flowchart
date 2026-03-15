@@ -43,6 +43,7 @@ Three distinctive drawing engines to meet different needs:
 
 - **⚡ Instant Response** - Almost all diagrams render in seconds, no more waiting
 - **🎭 Beautiful Styling** - Specially optimized Mermaid rendering for significantly improved aesthetics
+- **✍️ Handwriting Font** - Excalidraw uses Excalifont handwriting style by default for a natural sketch feel
 - **🧠 Smart Editing** - Continue editing based on existing diagrams, AI understands context
 - **📐 Spatial Awareness** - Better layout capabilities, fewer arrows crossing through elements
 
@@ -133,6 +134,15 @@ pnpm run dev:backend    # Wrangler Pages only (http://localhost:8787)
 ```
 
 **Note**: Access `http://localhost:8787` during development (wrangler proxies vite).
+
+### 4. Font Files (Optional)
+
+Excalidraw fonts are pre-configured to load from `/fonts/`. If font files are missing, copy them:
+
+```bash
+mkdir -p public/fonts/Excalifont
+cp node_modules/@excalidraw/excalidraw/dist/prod/fonts/Excalifont/Excalifont-Regular.woff2 public/fonts/Excalifont/
+```
 
 ## 📦 Cloudflare Pages Deployment
 

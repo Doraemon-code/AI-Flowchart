@@ -43,6 +43,7 @@
 
 - **⚡ 秒级响应** - 几乎所有图表秒级渲染，无需等待
 - **🎭 美观样式** - 特别优化的 Mermaid 渲染，美观度显著提升
+- **✍️ 手写字体** - Excalidraw 默认使用 Excalifont 手写字体，呈现自然的手绘风格
 - **🧠 智能编辑** - 支持基于现有图表继续编辑，AI 理解上下文
 - **📐 空间感知** - 更优的布局能力，减少元素间箭头交叉
 
@@ -102,8 +103,8 @@
 ### 1. 克隆并安装依赖
 
 ```bash
-git clone https://github.com/liujuntao123/smart-ai-draw
-cd smart-ai-draw
+git clone https://github.com/Doraemon-code/AI-Flowchart.git
+cd AI-Flowchart
 pnpm install
 ```
 
@@ -133,6 +134,15 @@ pnpm run dev:backend    # 仅 Wrangler Pages (http://localhost:8787)
 ```
 
 **注意**: 开发时访问 `http://localhost:8787`（wrangler 代理 vite）
+
+### 4. 字体文件（可选）
+
+Excalidraw 字体已配置为从 `/fonts/` 加载。如果字体文件缺失，请复制：
+
+```bash
+mkdir -p public/fonts/Excalifont
+cp node_modules/@excalidraw/excalidraw/dist/prod/fonts/Excalifont/Excalifont-Regular.woff2 public/fonts/Excalifont/
+```
 
 ## 📦 Cloudflare Pages 部署
 
