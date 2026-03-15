@@ -4,10 +4,14 @@ import { useModelStore } from '@/stores/modelStore'
 import type { ModelConfig } from '@/types'
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api'
+const PASSWORD_STORAGE_KEY = 'ai-flowchart-access-password'
 
 async function fetchModels(): Promise<ModelConfig[]> {
   try {
-    const response = await fetch(`${API_BASE_URL}/models`)
+    const password = localStorage.getItem(PASSWORD_STORAGE_KEY)
+    const response = await fetch(`${API_BASE_URL}/models`, {
+      headers: password ? { 'X-Access-Password': password } : {},
+    })
     if (!response.ok) {
       throw new Error('Failed to fetch models')
     }

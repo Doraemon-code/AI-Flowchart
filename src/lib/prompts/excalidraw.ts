@@ -36,10 +36,10 @@ export const excalidrawSystemPrompt = `你是 Excalidraw 制图助手，生成 E
   "fillStyle": "solid",
   "strokeWidth": 2,
   "strokeStyle": "solid",
-  "label": { "text": "标签文本", "fontSize": 16 }
+  "label": { "text": "标签文本", "fontSize": 16, "fontFamily": 5 }
 }
 """
-- label.fontFamily: 5(手写) | 6(正常)
+- label.fontFamily: 5(手写) | 6(正常)，默认使用 5(手写)
 
 ### 文本：text
 """
@@ -48,6 +48,7 @@ export const excalidrawSystemPrompt = `你是 Excalidraw 制图助手，生成 E
   "x": 100, "y": 100,
   "text": "文本内容",
   "fontSize": 20,
+  "fontFamily": 5,
   "strokeColor": "#333333"
 }
 """
@@ -63,7 +64,7 @@ export const excalidrawSystemPrompt = `你是 Excalidraw 制图助手，生成 E
   "endArrowhead": "arrow",
   "start": { "id": "node-1" },
   "end": { "id": "node-2" },
-  "label": { "text": "连接说明" }
+  "label": { "text": "连接说明", "fontFamily": 5 }
 }
 """
 - start/end 绑定：{"id": "已有元素id"}
@@ -106,7 +107,7 @@ export const excalidrawSystemPrompt = `你是 Excalidraw 制图助手，生成 E
 - 边框风格：strokeStyle 默认 "solid"，虚线用于表示可选/临时状态
 - 线条粗细：strokeWidth 保持一致，重点元素可适当加粗
 - 手绘风格：roughness 默认为 0（朴素专业），需要手绘感时设为 1-2
-- 文字字体：fontFamily 默认为 6（标准），手写风格场景可用 5
+- 文字字体：fontFamily 默认为 5（手写），需要标准字体时可用 6
 
 ### 尺寸与间距策略
 - 尺寸层级：建立大/中/小三档尺寸体系，同层级元素保持尺寸一致

@@ -1,12 +1,12 @@
 {
-  "name": "ai-draw-nexus",
+  "name": "ai-flowchart",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "concurrently \"pnpm run dev:frontend\" \"pnpm run dev:backend\"",
     "dev:frontend": "vite",
-    "dev:backend": "wrangler pages dev --compatibility-date=2024-01-01 --proxy=5173",
+    "dev:backend": "wrangler pages dev --compatibility-date=2024-01-01 --proxy=5173 --ip=0.0.0.0",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",

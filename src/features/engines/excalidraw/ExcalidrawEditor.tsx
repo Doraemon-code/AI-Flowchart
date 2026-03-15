@@ -128,7 +128,12 @@ export const ExcalidrawEditor = forwardRef<ExcalidrawEditorRef, ExcalidrawEditor
       // Prepare elements with proper binding handling
       const restoredElements = prepareExcalidrawElements(elementsData)
 
-      return { elements: restoredElements }
+      return {
+        elements: restoredElements,
+        appState: {
+          currentItemFontFamily: 5, // 默认使用手写字体
+        },
+      }
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Invalid JSON'
       setError(errorMessage)

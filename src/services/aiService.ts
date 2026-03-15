@@ -5,16 +5,17 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api'
 
 /**
  * 获取请求头（包含访问密码）
+ * 强制要求密码，否则抛出错误
  */
 function getHeaders(): Record<string, string> {
-  const headers: Record<string, string> = {
+  const password = localStorage.getItem('ai-flowchart-access-password')
+  if (!password) {
+    throw new Error('请先输入访问密码')
+  }
+  return {
     'Content-Type': 'application/json',
+    'X-Access-Password': password,
   }
-  const password = localStorage.getItem('ai-draw-access-password')
-  if (password) {
-    headers['X-Access-Password'] = password
-  }
-  return headers
 }
 
 interface ParseUrlResponse {
@@ -173,7 +174,7 @@ export const aiService = {
   async parseUrl(url: string): Promise<ParseUrlResponse> {
     const response = await fetch(`${API_BASE_URL}/parse-url`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: getHeaders(),
       body: JSON.stringify({ url }),
     })
 

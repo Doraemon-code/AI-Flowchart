@@ -3,7 +3,7 @@
  * 用于存储和验证 API 访问密码
  */
 
-const PASSWORD_STORAGE_KEY = 'ai-draw-access-password'
+const PASSWORD_STORAGE_KEY = 'ai-flowchart-access-password'
 
 export const accessService = {
   /**

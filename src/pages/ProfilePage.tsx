@@ -4,7 +4,7 @@ import { Button, Input } from '@/components/ui'
 import { useToast } from '@/hooks/useToast'
 import { Settings, Eye, EyeOff } from 'lucide-react'
 
-const PASSWORD_STORAGE_KEY = 'ai-draw-access-password'
+const PASSWORD_STORAGE_KEY = 'ai-flowchart-access-password'
 
 export function ProfilePage() {
   const [activeTab] = useState('settings')

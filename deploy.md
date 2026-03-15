@@ -11,7 +11,7 @@
 
 1. 登录 [Cloudflare Dashboard](https://dash.cloudflare.com)
 2. 进入 **Workers & Pages** → **Create** → **Pages** → **Connect to Git**
-3. 选择 GitHub 仓库 `ai-draw-nexus`
+3. 选择 GitHub 仓库 `ai-flowchart`
 4. 配置构建设置：
    - **Framework preset**：Vite
    - **Build command**：`pnpm run build`
@@ -40,8 +40,8 @@
 
 ## 部署后
 
-- 前端地址：`https://ai-draw-nexus.pages.dev`
-- Worker 地址：`https://ai-draw-nexus-worker.<账户>.workers.dev`
+- 前端地址：`https://ai-flowchart.pages.dev`
+- Worker 地址：`https://ai-flowchart-worker.<账户>.workers.dev`
 
 获取 Worker 地址后，回到 Pages 项目添加环境变量 `VITE_API_BASE_URL`，重新部署即可。
 

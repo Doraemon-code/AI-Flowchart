@@ -1,5 +1,6 @@
 import type { Env } from './_shared/types'
 import { corsHeaders } from './_shared/cors'
+import { validateAccessPassword } from './_shared/auth'
 
 interface ModelConfig {
   id: string
@@ -8,7 +9,19 @@ interface ModelConfig {
 }
 
 export const onRequestGet: PagesFunction<Env> = async (context) => {
-  const { env } = context
+  const { request, env } = context
+
+  // 验证访问密码
+  const auth = validateAccessPassword(request, env)
+  if (!auth.valid) {
+    return new Response(JSON.stringify({ error: auth.reason }), {
+      status: 401,
+      headers: {
+        ...corsHeaders,
+        'Content-Type': 'application/json',
+      },
+    })
+  }
 
   try {
     let models: ModelConfig[] = []

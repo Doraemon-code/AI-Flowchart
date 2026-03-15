@@ -2,10 +2,8 @@ import { parseHTML } from 'linkedom'
 import { Readability } from '@mozilla/readability'
 import TurndownService from 'turndown'
 import { corsHeaders } from './_shared/cors'
-
-interface Env {
-  [key: string]: string
-}
+import { validateAccessPassword } from './_shared/auth'
+import type { Env } from './_shared/types'
 
 export const onRequestOptions: PagesFunction<Env> = async () => {
   return new Response(null, { headers: corsHeaders })
@@ -72,7 +70,16 @@ interface PagesContext {
 }
 
 export const onRequestPost: PagesFunction<Env> = async (context: PagesContext) => {
-  const { request } = context
+  const { request, env } = context
+
+  // 验证访问密码
+  const auth = validateAccessPassword(request, env)
+  if (!auth.valid) {
+    return new Response(JSON.stringify({ error: auth.reason }), {
+      status: 401,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    })
+  }
 
   try {
     const { url } = await request.json() as { url: string }

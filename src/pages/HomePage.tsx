@@ -198,7 +198,7 @@ export function HomePage() {
                 <Sparkles className="h-6 w-6 text-surface" />
               </div> */}
               <h1 className="text-3xl font-bold text-primary">
-                AI Draw Nexus 
+                AI-FlowChart
               </h1>
             </div>
             <p className="text-muted">AI驱动的一站式绘图平台</p>
@@ -249,7 +249,7 @@ export function HomePage() {
 
               <textarea
                 ref={textareaRef}
-                placeholder="描述你想要绘制的图表，AI Draw Nexus 会帮你完成..."
+                placeholder="描述你想要绘制的图表，AI-FlowChart 会帮你完成..."
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
                 onKeyDown={handleKeyDown}
