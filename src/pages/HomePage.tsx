@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Sparkles, Paperclip, ChevronDown, Plus, Send, Link, X, MoveRight } from 'lucide-react'
 import { Button, Loading } from '@/components/ui'
 import { AppSidebar, AppHeader, CreateProjectDialog } from '@/components/layout'
+import { ModelSelector } from '@/components/ModelSelector'
 import { ENGINES, QUICK_ACTIONS } from '@/constants'
 import { formatDate } from '@/lib/utils'
 import type { EngineType, Project, UrlAttachment, Attachment, ImageAttachment, DocumentAttachment } from '@/types'
@@ -270,6 +271,9 @@ export function HomePage() {
               {/* 底部工具栏 */}
               <div className="flex items-center justify-between border-t border-border pt-3 mt-2">
                 <div className="flex items-center gap-3">
+                  {/* 模型选择 */}
+                  <ModelSelector />
+
                   {/* 上传附件 */}
                   <button
                     onClick={handleAttachmentClick}

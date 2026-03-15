@@ -71,4 +71,15 @@ export interface PayloadMessage {
 export interface ChatRequest {
   messages: PayloadMessage[]
   stream?: boolean
+  model?: string // Optional model override
+}
+
+// Model configuration
+export interface ModelConfig {
+  id: string
+  name: string
+  provider?: string
+  // Optional per-model API configuration (overrides global settings)
+  apiKey?: string
+  baseUrl?: string
 }

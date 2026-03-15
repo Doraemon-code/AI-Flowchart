@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { Send, ImagePlus, FileText, User, Bot, X, MessageSquarePlus, Loader2, CheckCircle2, Link,MoveRight } from 'lucide-react'
 import { Button, Loading } from '@/components/ui'
+import { ModelSelector } from '@/components/ModelSelector'
 import { useChatStore } from '@/stores/chatStore'
 import { useEditorStore, selectIsEmpty } from '@/stores/editorStore'
 import { useAIGenerate } from '@/hooks/useAIGenerate'
@@ -385,7 +386,9 @@ export function ChatPanel() {
 
           {/* Bottom toolbar inside input */}
           <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between">
-            <div className="flex gap-1">
+            <div className="flex items-center gap-1">
+              {/* 模型选择 */}
+              <ModelSelector />
               <Button
                 variant="ghost"
                 size="icon"

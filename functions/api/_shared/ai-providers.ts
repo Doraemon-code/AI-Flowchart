@@ -1,4 +1,5 @@
 import type { Env, Message, ContentPart, AnthropicContentPart, OpenAIResponse, AnthropicResponse } from './types'
+import { getModelConfig } from './types'
 
 export function convertContentPartsToAnthropic(parts: ContentPart[]): AnthropicContentPart[] {
   return parts
@@ -28,9 +29,21 @@ export function convertContentPartsToAnthropic(parts: ContentPart[]): AnthropicC
     .filter((part) => part.type === 'image' || (part.type === 'text' && part.text))
 }
 
-export async function callOpenAI(messages: Message[], env: Env): Promise<string> {
-  const baseUrl = env.AI_BASE_URL
-  const apiKey = env.AI_API_KEY
+export async function callOpenAI(messages: Message[], env: Env, model?: string): Promise<string> {
+  // Determine API configuration: per-model override or global fallback
+  let baseUrl = env.AI_BASE_URL
+  let apiKey = env.AI_API_KEY
+  let modelId = model || env.AI_MODEL_ID
+
+  // Check if there's a per-model configuration
+  if (model) {
+    const modelConfig = getModelConfig(env, model)
+    if (modelConfig) {
+      baseUrl = modelConfig.baseUrl || env.AI_BASE_URL
+      apiKey = modelConfig.apiKey || env.AI_API_KEY
+      modelId = modelConfig.id
+    }
+  }
 
   if (!apiKey) {
     throw new Error('AI_API_KEY not configured')
@@ -43,7 +56,7 @@ export async function callOpenAI(messages: Message[], env: Env): Promise<string>
       'Authorization': `Bearer ${apiKey}`,
     },
     body: JSON.stringify({
-      model: env.AI_MODEL_ID,
+      model: modelId,
       messages: messages,
       max_tokens: 64000,
       stream: false,
@@ -59,9 +72,21 @@ export async function callOpenAI(messages: Message[], env: Env): Promise<string>
   return data.choices[0]?.message?.content || ''
 }
 
-export async function callAnthropic(messages: Message[], env: Env): Promise<string> {
-  const baseUrl = env.AI_BASE_URL
-  const apiKey = env.AI_API_KEY
+export async function callAnthropic(messages: Message[], env: Env, model?: string): Promise<string> {
+  // Determine API configuration: per-model override or global fallback
+  let baseUrl = env.AI_BASE_URL
+  let apiKey = env.AI_API_KEY
+  let modelId = model || env.AI_MODEL_ID
+
+  // Check if there's a per-model configuration
+  if (model) {
+    const modelConfig = getModelConfig(env, model)
+    if (modelConfig) {
+      baseUrl = modelConfig.baseUrl || env.AI_BASE_URL
+      apiKey = modelConfig.apiKey || env.AI_API_KEY
+      modelId = modelConfig.id
+    }
+  }
 
   if (!apiKey) {
     throw new Error('AI_API_KEY not configured')
@@ -83,7 +108,7 @@ export async function callAnthropic(messages: Message[], env: Env): Promise<stri
       'anthropic-version': '2023-06-01',
     },
     body: JSON.stringify({
-      model: env.AI_MODEL_ID,
+      model: modelId,
       max_tokens: 64000,
       system: typeof systemMessage?.content === 'string' ? systemMessage.content : '',
       messages: anthropicMessages,

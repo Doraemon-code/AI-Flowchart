@@ -72,8 +72,8 @@ export const aiService = {
   /**
    * Send chat messages to AI and get response (non-streaming)
    */
-  async chat(messages: PayloadMessage[]): Promise<string> {
-    const request: ChatRequest = { messages }
+  async chat(messages: PayloadMessage[], model?: string): Promise<string> {
+    const request: ChatRequest = { messages, model }
 
     const response = await fetch(`${API_BASE_URL}/chat`, {
       method: 'POST',
@@ -95,14 +95,16 @@ export const aiService = {
    * @param messages - The messages to send
    * @param onChunk - Callback for each content chunk
    * @param onComplete - Optional callback when streaming completes
+   * @param model - Optional model override
    * @returns The full accumulated content
    */
   async streamChat(
     messages: PayloadMessage[],
     onChunk: (chunk: string, accumulated: string) => void,
-    onComplete?: (content: string) => void
+    onComplete?: (content: string) => void,
+    model?: string
   ): Promise<string> {
-    const request: ChatRequest = { messages, stream: true } as ChatRequest & { stream: boolean }
+    const request: ChatRequest & { stream: boolean } = { messages, stream: true, model }
 
     const response = await fetch(`${API_BASE_URL}/chat`, {
       method: 'POST',

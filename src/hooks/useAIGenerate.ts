@@ -1,6 +1,7 @@
 import { useChatStore } from '@/stores/chatStore'
 import { useEditorStore } from '@/stores/editorStore'
 import { usePayloadStore } from '@/stores/payloadStore'
+import { useModelStore } from '@/stores/modelStore'
 import { VersionRepository } from '@/services/versionRepository'
 import { ProjectRepository } from '@/services/projectRepository'
 import {
@@ -99,6 +100,7 @@ export function useAIGenerate() {
 
   const { setMessages } = usePayloadStore()
   const { success, error: showError } = useToast()
+  const { selectedModelId } = useModelStore()
 
   /**
    * Generate diagram using AI with streaming support
@@ -297,11 +299,13 @@ export function useAIGenerate() {
           updateMessage(assistantMsgId, {
             content: `Phase 1/2: Generating elements...\n\n${accumulated}`,
           })
-        }
+        },
+        undefined,
+        selectedModelId || undefined
       )
       elements = extractCode(response, engineType)
     } else {
-      const response = await aiService.chat(phase1Messages)
+      const response = await aiService.chat(phase1Messages, selectedModelId || undefined)
       elements = extractCode(response, engineType)
     }
 
@@ -337,11 +341,13 @@ export function useAIGenerate() {
           updateMessage(assistantMsgId, {
             content: `Phase 2/2: Generating connections...\n\n${accumulated}`,
           })
-        }
+        },
+        undefined,
+        selectedModelId || undefined
       )
       return extractCode(response, engineType)
     } else {
-      const response = await aiService.chat(phase2Messages)
+      const response = await aiService.chat(phase2Messages, selectedModelId || undefined)
       return extractCode(response, engineType)
     }
   }
@@ -378,11 +384,13 @@ export function useAIGenerate() {
           updateMessage(assistantMsgId, {
             content: `Generating diagram...\n\n${accumulated}`,
           })
-        }
+        },
+        undefined,
+        selectedModelId || undefined
       )
       return extractCode(response, engineType)
     } else {
-      const response = await aiService.chat(messages)
+      const response = await aiService.chat(messages, selectedModelId || undefined)
       return extractCode(response, engineType)
     }
   }
@@ -417,11 +425,13 @@ export function useAIGenerate() {
           updateMessage(assistantMsgId, {
             content: `Modifying diagram...\n\n${accumulated}`,
           })
-        }
+        },
+        undefined,
+        selectedModelId || undefined
       )
       return extractCode(response, engineType)
     } else {
-      const response = await aiService.chat(messages)
+      const response = await aiService.chat(messages, selectedModelId || undefined)
       return extractCode(response, engineType)
     }
   }
@@ -466,11 +476,13 @@ export function useAIGenerate() {
             updateMessage(assistantMsgId, {
               content: `修复报错 (尝试 ${attempts}/${MAX_MERMAID_FIX_ATTEMPTS})...\n\n${accumulated}`,
             })
-          }
+          },
+          undefined,
+          selectedModelId || undefined
         )
         fixedCode = extractCode(response, 'mermaid')
       } else {
-        const response = await aiService.chat(messages)
+        const response = await aiService.chat(messages, selectedModelId || undefined)
         fixedCode = extractCode(response, 'mermaid')
       }
 

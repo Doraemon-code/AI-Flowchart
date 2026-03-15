@@ -27,7 +27,7 @@ export const onRequestPost: PagesFunction<Env> = async (context: PagesContext) =
     }
 
     const body: ChatRequest = await request.json()
-    const { messages, stream = false } = body
+    const { messages, stream = false, model } = body
 
     if (!messages || !Array.isArray(messages)) {
       return new Response(JSON.stringify({ error: 'Invalid request: messages required' }), {
@@ -42,21 +42,21 @@ export const onRequestPost: PagesFunction<Env> = async (context: PagesContext) =
     if (stream) {
       switch (provider) {
         case 'anthropic':
-          return streamAnthropic(messages, env, exempt)
+          return streamAnthropic(messages, env, exempt, model)
         case 'openai':
         default:
-          return streamOpenAI(messages, env, exempt)
+          return streamOpenAI(messages, env, exempt, model)
       }
     } else {
       let response: string
 
       switch (provider) {
         case 'anthropic':
-          response = await callAnthropic(messages, env)
+          response = await callAnthropic(messages, env, model)
           break
         case 'openai':
         default:
-          response = await callOpenAI(messages, env)
+          response = await callOpenAI(messages, env, model)
           break
       }
 

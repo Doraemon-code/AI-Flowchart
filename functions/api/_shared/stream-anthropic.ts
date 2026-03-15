@@ -1,10 +1,23 @@
 import type { Env, Message } from './types'
 import { corsHeaders } from './cors'
+import { getModelConfig } from './types'
 import { convertContentPartsToAnthropic } from './ai-providers'
 
-export async function streamAnthropic(messages: Message[], env: Env, exempt: boolean = false): Promise<Response> {
-  const baseUrl = env.AI_BASE_URL
-  const apiKey = env.AI_API_KEY
+export async function streamAnthropic(messages: Message[], env: Env, exempt: boolean = false, model?: string): Promise<Response> {
+  // Determine API configuration: per-model override or global fallback
+  let baseUrl = env.AI_BASE_URL
+  let apiKey = env.AI_API_KEY
+  let modelId = model || env.AI_MODEL_ID
+
+  // Check if there's a per-model configuration
+  if (model) {
+    const modelConfig = getModelConfig(env, model)
+    if (modelConfig) {
+      baseUrl = modelConfig.baseUrl || env.AI_BASE_URL
+      apiKey = modelConfig.apiKey || env.AI_API_KEY
+      modelId = modelConfig.id
+    }
+  }
 
   if (!apiKey) {
     throw new Error('AI_API_KEY not configured')
@@ -26,7 +39,7 @@ export async function streamAnthropic(messages: Message[], env: Env, exempt: boo
       'anthropic-version': '2023-06-01',
     },
     body: JSON.stringify({
-      model: env.AI_MODEL_ID,
+      model: modelId,
       max_tokens: 64000,
       system: typeof systemMessage?.content === 'string' ? systemMessage.content : '',
       messages: anthropicMessages,
